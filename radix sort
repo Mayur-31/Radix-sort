@@ -1,0 +1,39 @@
+# Radix sort
+
+def radix_sort(Percentage):
+    RADIX = 10
+    placement = 1
+    max_digit = max(Percentage)
+
+    while placement < max_digit:
+      buckets = [list() for _ in range( RADIX )]
+      for i in Percentage:
+        tmp = int((i / placement) % RADIX)
+        buckets[tmp].append(i)
+      a = 0
+      for b in range( RADIX ):
+        buck = buckets[b]
+
+        for i in buck:
+          Percentage[a] = i
+          a += 1
+      placement *= RADIX
+    return Percentage
+
+Percentage = []
+number = int(input("Enter the Total Number of Students:\n"))
+for i in range(number):
+    value = float(input("Enter the Percentage:\n "))
+    Percentage.append(value)
+radix_sort(Percentage)
+print(Percentage)
+
+print("The Top five scores are:",Percentage)
+minimum = len(Percentage)-6
+maximum = len(Percentage)-1
+index = 1
+for i in range(maximum,minimum,-1):
+    if i>=0:
+        print(f"{index} Top Scorer:",Percentage[i],"\n")
+        index+=1
+
